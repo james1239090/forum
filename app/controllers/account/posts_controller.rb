@@ -4,4 +4,18 @@ class Account::PostsController < ApplicationController
   def index
     @posts = current_user.posts
   end
+
+
+  def edit
+
+  end
+
+  def destroy
+   puts "-------------"
+
+  end
+
+  def update
+
+  end
 end
