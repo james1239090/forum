@@ -1,0 +1,22 @@
+<div class="col-md-12">
+  <h2 class="text-center">我喜歡的文章</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Content</th>
+        <th>Group Name</th>
+        <th>Last Update</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @likes.each do |like| %>
+        <tr>
+          <td><%= like.post.content %></td>
+          <td><%= like.post.group.title %></td>
+          <td><%= like.post.updated_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

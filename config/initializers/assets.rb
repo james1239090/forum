@@ -8,5 +8,5 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
- Rails.application.config.assets.precompile += %w( groups.css posts.css account/groups.css account/posts.css)
- Rails.application.config.assets.precompile += %w( groups.js posts.js account/groups.js account/posts.js)
+ Rails.application.config.assets.precompile += %w( groups.css posts.css account/groups.css account/posts.css account/likes.css)
+ Rails.application.config.assets.precompile += %w( groups.js posts.js account/groups.js account/posts.js account/likes.js)
