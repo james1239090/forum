@@ -20,40 +20,8 @@
         <h2><%= @group.title %></h2>
         <p><%= @group.description %></p>
       </div>
-      <div class="ibox-content">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>文章內容</th>
-              <th>發表者</th>
-              <th>發表時間</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @posts.each do |post| %>
-              <tr>
-                <td><%= post.id %></td>
-                <td><%= post.content %></td>
-                <td><%= post.user.email %></td>
-                <td><%= post.created_at %></td>
-                <td>
-                  <% if current_user %>
-                    <% if post.is_like?(current_user) %>
-                      <%= link_to group_post_like_path(post.group,post),method: :delete, class: "btn btn-xs btn-danger btn-circle" do %>
-                        <i class="fa fa-heart"></i>
-                      <% end %>
-                    <% else %>
-                      <%= link_to group_post_likes_path(current_user,post),method: :post, class: "btn btn-xs btn-danger btn-circle btn-outline" do %>
-                        <i class="fa fa-heart"></i>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </td>
-                <td class="text-danger "><%= post.likes.count %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <div class="ibox-content forum-post-container">
+        <%= render :partial=> "media_post", :collection => @posts, :as=> :post %>
         <div class="text-center">
           <%= will_paginate @posts %>
         </div>

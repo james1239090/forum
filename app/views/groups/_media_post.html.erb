@@ -1,0 +1,26 @@
+<div class="media">
+  <a class="forum-avatar" href="#">
+    <%= image_tag("http://placehold.it/50x50&text=JB", class: "img-circle", alt:"image") %>
+    <div class="author-info text-right">
+      <strong>id:</strong> <%= post.user.email %><br>
+      <strong>Posts:</strong> <%= post.user.posts.count %><br>
+      <strong>Joined:</strong> <%= post.user.created_at %><br>
+    </div>
+  </a>
+  <div class="media-body">
+    <div class="media-heading pull-right">
+      <% if current_user %>
+        <% if post.is_like?(current_user) %>
+          <%= link_to group_post_like_path(post.group,post),method: :delete, class: "btn btn-xs btn-danger btn-circle" do %>
+            <i class="fa fa-heart"></i>
+          <% end %>
+        <% else %>
+          <%= link_to group_post_likes_path(current_user,post),method: :post, class: "btn btn-xs btn-danger btn-circle btn-outline" do %>
+            <i class="fa fa-heart"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= post.content %>
+  </div>
+</div>
