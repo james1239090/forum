@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   validates :content, presence: true
 
   scope :recent, -> {order("created_at DESC")}
+
   def is_like?(user)
     self.likes.where(:user_id => user.id).length > 0
   end

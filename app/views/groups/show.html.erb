@@ -32,11 +32,24 @@
           <tbody>
             <% @posts.each do |post| %>
               <tr>
+                <td><%= post.id %></td>
                 <td><%= post.content %></td>
                 <td><%= post.user.email %></td>
                 <td><%= post.created_at %></td>
-                <td><%= post.is_like?(current_user) %></td>
-                <td><%= post.likes.count %></td>
+                <td>
+                  <% if current_user %>
+                    <% if post.is_like?(current_user) %>
+                      <%= link_to group_post_like_path(post.group,post),method: :delete, class: "btn btn-xs btn-danger btn-circle" do %>
+                        <i class="fa fa-heart"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to group_post_likes_path(current_user,post),method: :post, class: "btn btn-xs btn-danger btn-circle btn-outline" do %>
+                        <i class="fa fa-heart"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="text-danger "><%= post.likes.count %></td>
               </tr>
             <% end %>
           </tbody>
