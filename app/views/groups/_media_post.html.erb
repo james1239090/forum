@@ -4,7 +4,7 @@
     <div class="author-info text-right">
       <strong>id:</strong> <%= post.user.email %><br>
       <strong>Posts:</strong> <%= post.user.posts.count %><br>
-      <strong>Joined:</strong> <%= post.user.created_at %><br>
+      <strong>Joined:</strong> <%= post.user.created_at.strftime("%Y/%m/%d") %><br>
     </div>
   </a>
   <div class="media-body">

@@ -11,7 +11,7 @@ class Account::PostsController < ApplicationController
   end
 
   def destroy
-   puts "-------------"
+
 
   end
 
