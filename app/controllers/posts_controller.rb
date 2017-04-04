@@ -52,7 +52,7 @@ class PostsController < ApplicationController
 
     @group = Group.find(params[:group_id])
     if !current_user.is_member_of?(@group)
-      redirect_to group_path(@group), alert: "You have no permission."
+      redirect_to group_path(@group), alert: "非本討論版成員，請先加入討論版"
     end
   end
 end

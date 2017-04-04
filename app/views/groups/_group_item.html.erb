@@ -1,12 +1,33 @@
-<tr>
-  <td></td>
-  <td><%= link_to(group.title, group_path(group)) %></td>
-  <td><%= render_group_description(group) %></td>
-  <td><%= group.user.email %></td>
-  <td>
-    <% if current_user && current_user == group.user %>
-      <%= link_to("Edit", edit_group_path(group),class:"btn btn-sm btn-default") %>
-      <%= link_to("Delete", group_path(group), class: "btn btn-sm btn-default", method: :delete, data:{confirm: "Are you sure?"}) %>
-    <% end %>
-  </td>
-</tr>
+<div class="forum-item active">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="forum-icon">
+        <i class="fa fa-globe"></i>
+      </div>
+      <%= link_to(group.title, group_path(group),class:"forum-item-title") %>
+      <div class="forum-sub-title">
+        <%= render_group_description(group) %>
+      </div>
+    </div>
+    <div class="col-md-1 forum-info">
+      <span class="views-number"><%= group.member.count %>
+      </span>
+      <div>
+        <small>Member</small>
+      </div>
+    </div>
+    <div class="col-md-1 forum-info">
+      <span class="views-number"><%= group.posts.count %>
+      </span>
+      <div>
+        <small>Posts</small>
+      </div>
+    </div>
+    <div class="col-md-2 forum-info">
+      <% if current_user && current_user == group.user %>
+        <%= link_to("Edit", edit_group_path(group),class:"btn btn-sm btn-default") %>
+        <%= link_to("Delete", group_path(group), class: "btn btn-sm btn-default", method: :delete, data:{confirm: "Are you sure?"}) %>
+      <% end %>
+    </div>
+  </div>
+</div>
