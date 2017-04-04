@@ -59,6 +59,7 @@ group :development do
 end
 
 group :production do
+  ruby '2.3.0'
   gem 'pg'
 end
 
