@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :only=>[:new, :create]
+  before_action :find_group_and_check_permission, :only=>[:new,:create,:show]
 
   def new
     @group = Group.find(params[:group_id])
@@ -45,5 +46,13 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def find_group_and_check_permission
+
+    @group = Group.find(params[:group_id])
+    if !current_user.is_member_of?(@group)
+      redirect_to group_path(@group), alert: "You have no permission."
+    end
   end
 end

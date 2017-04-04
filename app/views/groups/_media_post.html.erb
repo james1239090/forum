@@ -8,19 +8,26 @@
     </div>
   </a>
   <div class="media-body">
-    <div class="media-heading pull-right">
+    <div class="media-heading">
       <% if current_user %>
         <% if post.is_like?(current_user) %>
-          <%= link_to group_post_like_path(post.group,post),method: :delete, class: "btn btn-xs btn-danger btn-circle" do %>
+          <%= link_to group_post_like_path(post.group,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
             <i class="fa fa-heart"></i>
           <% end %>
         <% else %>
-          <%= link_to group_post_likes_path(current_user,post),method: :post, class: "btn btn-xs btn-danger btn-circle btn-outline" do %>
+          <%= link_to group_post_likes_path(current_user,post),method: :post, class: "btn btn-xs btn-danger btn-circle btn-outline pull-right" do %>
             <i class="fa fa-heart"></i>
           <% end %>
         <% end %>
       <% end %>
     </div>
-    <%= post.content %>
+
+    <%= simple_format(post.content)  %>
+    <br>
+  <hr class="hr-line-dashed">
+       <small class="text-muted text-left">submitted <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
   </div>
+
+
+
 </div>
