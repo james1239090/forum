@@ -32,7 +32,7 @@
         <i class="fa fa-pencil"> comment </i>
        <% end %>
 
-  <%= render :partial=> "media_comment", :collection => post.comments, :as=> :post %>
+  <%= render :partial=> "media_comment", :collection => post.comments.includes(:user), :as=> :post %>
   </div>
 
 
