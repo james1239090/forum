@@ -3,7 +3,9 @@
     <div class="wrapper wrapper-content animated fadeInRight">
       <div class="ibox-content forum-container">
         <div class="forum-title">
-          <%= link_to("New group", new_group_path, class: "btn btn-primary pull-right") %>
+          <%= link_to new_group_path, class: "btn btn-primary pull-right" do %>
+            <i class="fa fa-users">  New Group</i>
+          <% end %>
         </div>
         <br>
         <br>

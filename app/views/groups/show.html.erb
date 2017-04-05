@@ -1,26 +1,33 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
+    <div class="wrapper wrapper-content">
+      <div class="ibox-content m-b-sm border-bottom">
         <div class="group">
           <span class="pull-right">
             <% if current_user && current_user.is_member_of?(@group) %>
-              <label class="label label-success">群組成員</label>
-              <%= link_to("Quit Group", quit_group_path(@group),method: :post, class: "btn btn-default") %>
+              <%= link_to quit_group_path(@group),method: :post, class: "btn btn-danger btn-outline dim" do %>
+                <i class="fa fa-user-times">  Quit Group</i>
+              <% end %>
             <% else %>
-              <label class="label label-warning">不是群組成員</label>
-              <%= link_to("Join Group", join_group_path(@group),method: :post, class: "btn btn-default") %>
+              <%= link_to join_group_path(@group),method: :post, class: "btn btn-info btn-outline dim" do  %>
+                <i class="fa fa-user-plus">  Join group</i>
+              <% end %>
             <% end %>
           </span>
-          <%= link_to("Write a Post", new_group_post_path(@group), class: "btn btn-default pull-right") %>
+
           <% if current_user && current_user == @group.user %>
-            <%= link_to("Eidt", edit_group_path(@group), class: "btn btn-primary pull-right") %>
+            <%= link_to edit_group_path(@group), class: "btn btn-info  pull-right" do %>
+              <i class="fa fa-paste"> Eidt</i>
+            <% end %>
           <% end %>
         </div>
         <h2><%= @group.title %></h2>
         <p><%= @group.description %></p>
       </div>
       <div class="ibox-content forum-post-container">
+      <%= link_to("Write a Post", new_group_post_path(@group), class: "btn btn-default pull-right") %>
+      <br>
+      <br>
         <%= render :partial=> "media_post", :collection => @posts, :as=> :post %>
         <div class="text-center">
           <%= will_paginate @posts %>
