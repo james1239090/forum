@@ -30,6 +30,7 @@ class PostsController < ApplicationController
   def edit
     @group = Group.find(params[:group_id])
     @post = current_user.posts.find(params[:id])
+    session[:return_to] ||= request.referer
   end
 
   def update
@@ -37,7 +38,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to account_posts_path
+     redirect_to session.delete(:return_to)
+
     else
       render :edit
     end

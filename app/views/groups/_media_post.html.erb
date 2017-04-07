@@ -21,19 +21,19 @@
         <% end %>
       <% end %>
     </div>
-
     <%= markdown(post.content) %>
+    <% if current_user.posts.include?(post) %>
+      <%= link_to edit_group_post_path(post.group,post), class: "btn btn-info btn-xs btn-outline" do %>
+        <i class="fa fa-paste"> Eidt</i>
+      <% end %>
+    <% end %>
+    <%= link_to new_group_post_comment_path(post.group,post),class:"btn btn-success pull-right btn-xs btn-outline" do %>
+      <i class="fa fa-pencil"> comment </i>
+    <% end %>
     <br>
-  <hr class="hr-line-dashed">
-       <small class="text-muted text-left">submitted <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
-
-       </small>
-       <%= link_to new_group_post_comment_path(post.group,post),class:"btn btn-info pull-right btn-xs btn-outline" do %>
-        <i class="fa fa-pencil"> comment </i>
-       <% end %>
-
-  <%= render :partial=> "media_comment", :collection => post.comments.includes(:user), :as=> :post %>
+    <hr class="hr-line-dashed">
+    <small class="text-muted text-left">submitted <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+    </small>
+    <%= render :partial=> "media_comment", :collection => post.comments.includes(:user), :as=> :post %>
   </div>
-
-
 </div>
