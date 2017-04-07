@@ -24,7 +24,10 @@
     <%= markdown(post.content) %>
     <% if current_user.posts.include?(post) %>
       <%= link_to edit_group_post_path(post.group,post), class: "btn btn-info btn-xs btn-outline" do %>
-        <i class="fa fa-paste"> Eidt</i>
+        <i class="fa fa-paste"> Edit</i>
+      <% end %>
+      <%= link_to group_post_path(post.group,post),class: "btn btn-danger btn-xs btn-outline", method: :delete, data:{confirm: "Are you sure?"} do %>
+        <i class="fa fa-trash"> Delete</i>
       <% end %>
     <% end %>
     <%= link_to new_group_post_comment_path(post.group,post),class:"btn btn-success pull-right btn-xs btn-outline" do %>
