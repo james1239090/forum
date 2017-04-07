@@ -2,7 +2,10 @@
   <h2 class="text-center">我喜歡的文章</h2>
   <br>
   <br>
-   <div class="ibox-content forum-post-container">
-   <%= render :partial=> "media_post", :collection => @posts, :as=> :post %>
-   </div>
+  <div class="ibox-content forum-post-container">
+    <%= render :partial=> "media_post", :collection => @posts, :as=> :post %>
+  </div>
+  <div class="text-center">
+    <%= will_paginate @posts %>
+  </div>
 </div>
