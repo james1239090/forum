@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     resources :groups
     resources :posts
     resources :likes
+    resources :comments
   end
 end

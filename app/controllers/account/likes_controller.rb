@@ -1,5 +1,5 @@
 class Account::LikesController < ApplicationController
   def index
-    @likes =  current_user.likes.includes(:post)
+    @posts =  current_user.like_posts.includes(:user,:group)
   end
 end
