@@ -11,7 +11,7 @@
     <div class="media-heading">
       <% if signed_in? %>
         <% if post.is_like?(current_user) %>
-          <%= link_to group_post_like_path(post.group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
+          <%= link_to group_post_like_path(@group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
             <i class="fa fa-heart"></i>
           <% end %>
         <% else %>
@@ -22,16 +22,18 @@
       <% end %>
     </div>
     <%= markdown(post.content) %>
-    <% if signed_in? && current_user.posts.include?(post) %>
-      <%= link_to edit_group_post_path(post.group,post), class: "btn btn-info btn-xs btn-outline" do %>
-        <i class="fa fa-paste"> Edit</i>
+    <% if signed_in? && current_user.is_member_of?(@group) %>
+      <% if current_user.posts.include?(post) %>
+        <%= link_to edit_group_post_path(@group,post), class: "btn btn-info btn-xs btn-outline" do %>
+          <i class="fa fa-paste"> Edit</i>
+        <% end %>
+        <%= link_to group_post_path(@group,post),class: "btn btn-danger btn-xs btn-outline", method: :delete, data:{confirm: "Are you sure?"} do %>
+          <i class="fa fa-trash"> Delete</i>
+        <% end %>
       <% end %>
-      <%= link_to group_post_path(post.group,post),class: "btn btn-danger btn-xs btn-outline", method: :delete, data:{confirm: "Are you sure?"} do %>
-        <i class="fa fa-trash"> Delete</i>
+      <%= link_to new_group_post_comment_path(@group,post),class:"btn btn-success btn-xs btn-outline" do %>
+        <i class="fa fa-pencil"> comment </i>
       <% end %>
-    <% end %>
-    <%= link_to new_group_post_comment_path(post.group,post),class:"btn btn-success btn-xs btn-outline" do %>
-      <i class="fa fa-pencil"> comment </i>
     <% end %>
     <br>
     <hr class="hr-line-dashed">

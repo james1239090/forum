@@ -10,12 +10,14 @@
   <div class="media-body">
     <%= markdown(post.content) %>
     <br>
-    <% if signed_in? && current_user.comments.include?(post) %>
-      <%= link_to edit_group_post_comment_path(post,post,post), class: "btn btn-info btn-xs btn-outline" do %>
-        <i class="fa fa-paste"> Edit</i>
-      <% end %>
-      <%= link_to group_post_comment_path(post,post,post),class: "btn btn-danger btn-xs btn-outline", method: :delete, data:{confirm: "Are you sure?"} do %>
-        <i class="fa fa-trash"> Delete</i>
+    <% if signed_in? && current_user.is_member_of?(@group) %>
+      <% if current_user.comments.include?(post) %>
+        <%= link_to edit_group_post_comment_path(post,post,post), class: "btn btn-info btn-xs btn-outline" do %>
+          <i class="fa fa-paste"> Edit</i>
+        <% end %>
+        <%= link_to group_post_comment_path(post,post,post),class: "btn btn-danger btn-xs btn-outline", method: :delete, data:{confirm: "Are you sure?"} do %>
+          <i class="fa fa-trash"> Delete</i>
+        <% end %>
       <% end %>
     <% end %>
     <hr class="hr-line-solid">

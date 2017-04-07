@@ -11,7 +11,7 @@
     <div class="media-heading">
      <% if signed_in? %>
         <% if post.is_like?(current_user) %>
-          <%= link_to group_post_like_path(post.group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
+          <%= link_to group_post_like_path(@group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
             <i class="fa fa-heart"></i>
           <% end %>
         <% else %>
