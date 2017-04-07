@@ -9,7 +9,7 @@
   </a>
   <div class="media-body">
     <div class="media-heading">
-      <% if current_user %>
+      <% if signed_in? %>
         <% if post.is_like?(current_user) %>
           <%= link_to group_post_like_path(post.group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
             <i class="fa fa-heart"></i>
@@ -22,7 +22,7 @@
       <% end %>
     </div>
     <%= markdown(post.content) %>
-    <% if current_user.posts.include?(post) %>
+    <% if signed_in? && current_user.posts.include?(post) %>
       <%= link_to edit_group_post_path(post.group,post), class: "btn btn-info btn-xs btn-outline" do %>
         <i class="fa fa-paste"> Edit</i>
       <% end %>

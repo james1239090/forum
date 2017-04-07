@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="col-md-2 forum-info">
-      <% if current_user && current_user == group.user %>
+      <% if signed_in? && current_user == group.user %>
         <%= link_to("", edit_group_path(group),class:"fa fa-edit fa-2x") %>
 
         <%= link_to("", group_path(group), class: "fa fa-trash fa-2x", method: :delete, data:{confirm: "Are you sure?"}) %>

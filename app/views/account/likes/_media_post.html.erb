@@ -9,7 +9,7 @@
   </a>
   <div class="media-body">
       <div class="media-heading">
-      <% if current_user %>
+      <% if signed_in? %>
         <% if post.is_like?(current_user) %>
           <%= link_to group_post_like_path(post.group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
             <i class="fa fa-heart"></i>

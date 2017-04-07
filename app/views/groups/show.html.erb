@@ -4,7 +4,7 @@
       <div class="ibox-content m-b-sm border-bottom">
         <div class="group">
           <span class="pull-right">
-            <% if current_user && current_user.is_member_of?(@group) %>
+            <% if signed_in? && current_user.is_member_of?(@group) %>
               <%= link_to quit_group_path(@group),method: :post, class: "btn btn-danger btn-outline dim" do %>
                 <i class="fa fa-user-times">  Quit Group</i>
               <% end %>
