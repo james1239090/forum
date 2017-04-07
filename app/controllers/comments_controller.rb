@@ -24,6 +24,29 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @group = Group.find(params[:group_id])
+    @post = Post.find(params[:post_id])
+    @comment = current_user.comments.find(params[:id])
+    session[:return_to] ||= request.referer
+  end
+
+  def update
+    @comment = current_user.comments.find(params[:id])
+    if @comment.update(comment_params)
+     redirect_to session.delete(:return_to)
+    else
+      render :edit
+    end
+
+  end
+
+  def destroy
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy
+    redirect_to request.referer
+  end
+
 
   private
   def comment_params

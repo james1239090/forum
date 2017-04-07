@@ -34,12 +34,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    @group = Group.find(params[:group_id])
     @post = current_user.posts.find(params[:id])
-
     if @post.update(post_params)
      redirect_to session.delete(:return_to)
-
     else
       render :edit
     end
