@@ -2,17 +2,17 @@
   <a class="forum-avatar" href="#">
     <%= image_tag("http://placehold.it/50x50&text=JB", class: "img-circle", alt:"image") %>
     <div class="author-info text-right">
-      <strong>id:</strong> <%= post.user.email %><br>
-      <strong>Posts:</strong> <%= post.user.posts.count %><br>
-      <strong>Joined:</strong> <%= post.user.created_at.strftime("%Y/%m/%d") %><br>
+      <strong>id:</strong> <%= comment.user.email %><br>
+      <strong>Posts:</strong> <%= comment.user.posts.count %><br>
+      <strong>Joined:</strong> <%= comment.user.created_at.strftime("%Y/%m/%d") %><br>
     </div>
   </a>
   <div class="media-body">
 
-    <%= markdown(post.content) %>
+    <%= markdown(comment.content) %>
     <br>
   <hr class="hr-line-solid">
-       <small class="text-muted text-left">submitted <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+       <small class="text-muted text-left">submitted <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
 
        </small>
   </div>

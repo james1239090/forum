@@ -39,6 +39,6 @@
     <hr class="hr-line-dashed">
     <small class="text-muted text-left">submitted <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
     </small>
-    <%= render :partial=> "media_comment", :collection => post.comments.includes(:user), :as=> :post %>
+    <%= render :partial=> "media_comment", :collection => post.comments.includes(:user), :as=> :comment %>
   </div>
 </div>

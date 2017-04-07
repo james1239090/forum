@@ -11,7 +11,7 @@
       <div class="media-heading">
       <% if signed_in? %>
         <% if post.is_like?(current_user) %>
-          <%= link_to group_post_like_path(@group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
+          <%= link_to group_post_like_path(post.group,post,post),method: :delete, class: "btn btn-xs btn-danger btn-circle pull-right" do %>
             <i class="fa fa-heart"></i>
           <% end %>
         <% else %>
@@ -27,9 +27,9 @@
     <hr class="hr-line-dashed">
     <small class="text-muted text-left">submitted <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
     </small>
-    <%= link_to new_group_post_comment_path(post,post,post),class:"btn btn-info pull-right btn-xs btn-outline" do %>
+    <%= link_to new_group_post_comment_path(post.group,post),class:"btn btn-info pull-right btn-xs btn-outline" do %>
       <i class="fa fa-pencil"> comment </i>
     <% end %>
-    <%= render :partial=> "groups/media_comment", :collection => post.comments.includes(:user), :as=> :post %>
+    <%= render :partial=> "groups/media_comment", :collection => post.comments.includes(:user), :as=> :comment %>
   </div>
 </div>
