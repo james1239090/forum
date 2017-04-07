@@ -22,7 +22,7 @@
       <% end %>
     </div>
     <%= markdown(post.content) %>
-    <% if signed_in? && current_user.is_member_of?(@group) %>
+    <% if signed_in?  %>
       <% if current_user.posts.include?(post) %>
         <%= link_to edit_group_post_path(@group,post), class: "btn btn-info btn-xs btn-outline" do %>
           <i class="fa fa-paste"> Edit</i>
@@ -31,8 +31,10 @@
           <i class="fa fa-trash"> Delete</i>
         <% end %>
       <% end %>
-      <%= link_to new_group_post_comment_path(@group,post),class:"btn btn-success btn-xs btn-outline" do %>
-        <i class="fa fa-pencil"> comment </i>
+      <% if current_user.is_member_of?(@group) %>
+        <%= link_to new_group_post_comment_path(@group,post),class:"btn btn-success btn-xs btn-outline" do %>
+          <i class="fa fa-pencil"> comment </i>
+        <% end %>
       <% end %>
     <% end %>
     <br>
